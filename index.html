@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Math Project | Mohammed Ali Baraa</title>
+    <script src="https://cdn.plot.ly/plotly-2.24.1.min.js"></script>
+    <style>
+        :root { --primary: #00d4ff; --bg: #080808; }
+        body { margin: 0; background: var(--bg); color: white; font-family: -apple-system, sans-serif; display: flex; flex-direction: column; align-items: center; min-height: 100vh; }
+        
+        .header-tag { margin-top: 30px; background: rgba(0,212,255,0.1); border: 1px solid var(--primary); padding: 8px 25px; border-radius: 50px; font-weight: bold; font-size: 0.85rem; color: var(--primary); }
+
+        /* منطقة الرسم البياني */
+        #plot-area { width: 92%; max-width: 700px; height: 400px; margin: 30px 0; background: rgba(255,255,255,0.02); border-radius: 25px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+
+        /* البطاقة التعريفية الشاملة */
+        .info-card {
+            width: 85%; max-width: 500px; padding: 30px; margin-bottom: 40px;
+            background: rgba(255, 255, 255, 0.04); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            border-radius: 35px; border: 1px solid rgba(255,255,255,0.1); text-align: center;
+        }
+
+        h1 { margin: 10px 0; font-size: 1.8rem; font-weight: 800; background: linear-gradient(180deg, #fff 0%, #888 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .label { font-size: 0.75rem; color: var(--primary); font-weight: bold; text-transform: uppercase; letter-spacing: 1.5px; }
+        
+        .divider { height: 1px; background: rgba(255,255,255,0.1); margin: 20px 15%; }
+        
+        .supervisors-list { display: flex; flex-direction: column; gap: 8px; }
+        .mentor-name { color: #ccc; font-size: 1rem; font-weight: 500; }
+    </style>
+</head>
+<body>
+
+    <div class="header-tag">ثانوية الذرى للمتميزين - كربلاء</div>
+
+    <div id="plot-area"></div>
+
+    <div class="info-card">
+        <span class="label">المبرمج الرئيسي</span>
+        <h1>محمد علي براء صاحب الـرُبيعي</h1>
+        
+        <div class="divider"></div>
+        
+        <div class="supervisors-list">
+            <span class="label" style="color: #666; margin-bottom: 5px;">بإشراف الأساتذة الأفاضل</span>
+            <div class="mentor-name">خالد النصراوي</div>
+            <div class="mentor-name">حامد النصراوي</div>
+            <div class="mentor-name">علي غصن</div>
+        </div>
+    </div>
+
+    <script>
+        function initGraph() {
+            // بيانات رياضية احترافية للعرض
+            const x = [], y = [];
+            for(let i=0; i<=50; i++) {
+                x.push(i/5);
+                y.push(Math.sin(i/5) * Math.cos(i/10));
+            }
+
+            const trace = {
+                x: x, y: y,
+                mode: 'lines',
+                line: { color: '#00d4ff', width: 4, shape: 'spline' },
+                fill: 'tozeroy',
+                fillcolor: 'rgba(0, 212, 255, 0.1)'
+            };
+
+            const layout = {
+                paper_bgcolor: 'rgba(0,0,0,0)',
+                plot_bgcolor: 'rgba(0,0,0,0)',
+                margin: { t: 10, r: 10, b: 30, l: 30 },
+                xaxis: { gridcolor: '#222', zeroline: false, color: '#555' },
+                yaxis: { gridcolor: '#222', zeroline: false, color: '#555' }
+            };
+
+            Plotly.newPlot('plot-area', [trace], layout, { responsive: true, displayModeBar: false });
+        }
+        window.onload = initGraph;
+    </script>
+
+</body>
+</html>
